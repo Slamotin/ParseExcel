@@ -31,18 +31,14 @@ namespace ParseExcel
         Workbooks excelappallworkbooks = excelapp.Workbooks;
         public static string CurDir = Environment.CurrentDirectory;
         //Открываем книгу и получаем на нее ссылку
-        private static Workbook excelworkbook = excelapp.Workbooks.Open(CurDir + @"\Example.xlsx",
-             Type.Missing, Type.Missing, Type.Missing, Type.Missing,
-             Type.Missing, Type.Missing, Type.Missing, Type.Missing,
-             Type.Missing, Type.Missing, Type.Missing, Type.Missing,
-             Type.Missing, Type.Missing);
-        
-        private static Sheets excelallsheets = excelworkbook.Worksheets;
+        private static Workbook excelworkbook;
+
+        private static Sheets excelallsheets;
         //Получаем ссылку на лист 1
-        private static Worksheet excelworksheet = (Excel.Worksheet)excelallsheets.get_Item(1);
+        private static Worksheet excelworksheet;
         //получаем номер последней ячейки
-        private static Range lastcell = excelworksheet.Cells.SpecialCells(Excel.XlCellType.xlCellTypeLastCell);
-        int lastcellnumber = lastcell.Row;
+        private static Range lastcell;
+        int lastcellnumber;
         public int iter = 0;
 
         public MainWindow()
@@ -94,6 +90,32 @@ namespace ParseExcel
 
         private void buttonStart_Click(object sender, RoutedEventArgs e)
         {
+            //Excel.Application excelapp = new Excel.Application();
+
+            //Workbooks excelappallworkbooks = excelapp.Workbooks;
+            //string CurDir = Environment.CurrentDirectory;
+
+            OpenFileDialog openFile = new OpenFileDialog();
+            openFile.DefaultExt = ".xlsx"; // Default file extension
+            openFile.Filter = "Excel documents (.xlsx)|*.xlsx"; // Filter files by extension
+            openFile.InitialDirectory = CurDir;
+
+            filterInXlsxFile.IsEnabled = true;
+
+            //Открываем книгу и получаем на нее ссылку
+            excelworkbook = excelapp.Workbooks.Open(openFile.FileName,
+                 Type.Missing, Type.Missing, Type.Missing, Type.Missing,
+                 Type.Missing, Type.Missing, Type.Missing, Type.Missing,
+                 Type.Missing, Type.Missing, Type.Missing, Type.Missing,
+                 Type.Missing, Type.Missing);
+
+            excelallsheets = excelworkbook.Worksheets;
+            //Получаем ссылку на лист 1
+            excelworksheet = (Excel.Worksheet)excelallsheets.get_Item(1);
+            //получаем номер последней ячейки
+            lastcell = excelworksheet.Cells.SpecialCells(Excel.XlCellType.xlCellTypeLastCell);
+            lastcellnumber = lastcell.Row;
+
             excelapp.Visible = true;
             excelworkbook.Activate();
 

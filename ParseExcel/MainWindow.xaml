@@ -6,22 +6,26 @@
         xmlns:local="clr-namespace:ParseExcel"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <DockPanel Margin="10" >
-        <WrapPanel DockPanel.Dock="Top" Height="30" HorizontalAlignment="Right">
-            <Button Name="buttonStart" HorizontalAlignment="Right" Height="20" 
+    <Grid Margin="10" >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Button Name="buttonStart" HorizontalAlignment="Right" Height="25" Grid.Column="1" Margin="0,26,10,300"
                     Content="Start" Width="60" Click="buttonStart_Click"/>
-        </WrapPanel>
 
-
-        <ListBox Name="listBox1" Margin="0,0,150,0" Width="600" SelectionChanged="listBox1_SelectionChanged">
+        <ListBox Name="listBox1" Margin="0,0,150,0" Grid.Column="0" Width="600" SelectionChanged="listBox1_SelectionChanged">
 
         </ListBox>
         <Button Name="filterInXlsxFile" Content="filterInXlsxFile" 
-                DockPanel.Dock="Top" HorizontalAlignment="Right" Height="20" Margin="-76,200,0,0" 
+                HorizontalAlignment="Right" Grid.Column="1" Height="20" IsEnabled="False" Margin="0,-30,5,0" 
                 Click="filterInXlsxFile_Click"/>
-        <Rectangle Name="rect_Status" Height="20" VerticalAlignment="Top" Width="40" Margin="-56,26,0,-0.5" Fill="Red"/>
-        <Button Content="JoinXlsX" Height="20" VerticalAlignment="Top" Width="67" Margin="-46,60,0,0" Click="Button_Click"/>
+        <Rectangle Name="rect_Status" Grid.Column="1" Height="20" HorizontalAlignment="Right"
+                   VerticalAlignment="Top" Width="40" Margin="0,200,20,0" Fill="Red"/>
+        <Button Content="JoinXlsX" Grid.Column="1" Height="20" HorizontalAlignment="Right"
+                Width="67" Margin="0,200,5,0" Click="Button_Click"/>
 
 
-    </DockPanel>
+    </Grid>
 </Window>
