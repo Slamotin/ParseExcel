@@ -99,7 +99,7 @@ namespace ParseExcel
             openFile.DefaultExt = ".xlsx"; // Default file extension
             openFile.Filter = "Excel documents (.xlsx)|*.xlsx"; // Filter files by extension
             openFile.InitialDirectory = CurDir;
-
+            openFile.ShowDialog();
             filterInXlsxFile.IsEnabled = true;
 
             //Открываем книгу и получаем на нее ссылку
